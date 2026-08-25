@@ -3,6 +3,12 @@ import { store } from "@/store";
 import { extractUniquePages } from "@/lib/tc-parser";
 import { runExploration } from "@/lib/stagehand";
 
+export async function GET() {
+  const results = store.getExplorationResults();
+  const selectorMaps = store.getSelectorMaps();
+  return NextResponse.json({ results, selectorMaps });
+}
+
 export async function POST() {
   const tcs = store.getTCs();
   if (tcs.length === 0) {

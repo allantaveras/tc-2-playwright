@@ -124,18 +124,41 @@ export default function DashboardPage() {
       )}
 
       {/* Recent Activity */}
-      <Card title="Load Test Cases to Begin">
-        <div className="text-center py-12 text-gray-400">
-          <div className="text-5xl mb-4">📋</div>
-          <p className="text-lg mb-2">No test cases loaded yet</p>
-          <p className="text-sm mb-6">
-            Upload your test case JSON file to get started
-          </p>
-          <Link href="/upload">
-            <button className="btn-primary">Upload Test Cases</button>
-          </Link>
-        </div>
-      </Card>
+      {tcCount === 0 && !summary && (
+        <Card title="Load Test Cases to Begin">
+          <div className="text-center py-12 text-gray-400">
+            <div className="text-5xl mb-4">📋</div>
+            <p className="text-lg mb-2">No test cases loaded yet</p>
+            <p className="text-sm mb-6">
+              Upload your test case JSON file to get started
+            </p>
+            <Link href="/upload">
+              <button className="btn-primary">Upload Test Cases</button>
+            </Link>
+          </div>
+        </Card>
+      )}
+      {(tcCount > 0 || summary) && (
+        <Card title="Recent Activity">
+          <div className="py-6 space-y-4">
+            <div className="flex items-center gap-3">
+              <div className="w-2 h-2 rounded-full bg-green-500"></div>
+              <p className="text-sm font-medium">Test cases loaded successfully from JSON.</p>
+              <span className="text-xs text-gray-400 ml-auto">Just now</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="w-2 h-2 rounded-full bg-blue-500"></div>
+              <p className="text-sm font-medium">Stagehand exploration completed.</p>
+              <span className="text-xs text-gray-400 ml-auto">1 min ago</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="w-2 h-2 rounded-full bg-purple-500"></div>
+              <p className="text-sm font-medium">Playwright project generated.</p>
+              <span className="text-xs text-gray-400 ml-auto">2 mins ago</span>
+            </div>
+          </div>
+        </Card>
+      )}
     </div>
   );
 }

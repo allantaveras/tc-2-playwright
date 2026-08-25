@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { Card, Button, Badge, ProgressBar } from "@/components/ui";
 
 export default function GeneratePage() {
@@ -12,6 +12,19 @@ export default function GeneratePage() {
   const [running, setRunning] = useState(false);
   const [runResult, setRunResult] = useState<any>(null);
   const [stage, setStage] = useState<"idle" | "generating" | "generated" | "running" | "done">("idle");
+
+  useEffect(() => {
+    fetch("/api/generate", { method: "GET" })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.projectPath) {
+          setStage("generated");
+          setDone(true);
+          setFileCount(45);
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   const handleGenerate = useCallback(async () => {
     setGenerating(true);

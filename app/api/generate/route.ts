@@ -5,6 +5,11 @@ import { bundleProject } from "@/lib/generator/project-bundler";
 import * as path from "path";
 import * as fs from "fs";
 
+export async function GET() {
+  const projectPath = store.getGeneratedProjectPath();
+  return NextResponse.json({ projectPath });
+}
+
 export async function POST() {
   const tcs = store.getTCs();
   if (tcs.length === 0) {

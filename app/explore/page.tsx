@@ -14,6 +14,21 @@ export default function ExplorePage() {
   const [totalPages, setTotalPages] = useState(0);
   const [status, setStatus] = useState<"idle" | "running" | "done" | "error">("idle");
 
+  useEffect(() => {
+    fetch("/api/explore", { method: "GET" })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.results && data.results.length > 0) {
+          setResults(data.results);
+          setSelectorMaps(data.selectorMaps || {});
+          setTotalPages(data.results.length);
+          setProgress(100);
+          setStatus("done");
+        }
+      })
+      .catch(() => {});
+  }, []);
+
   const startExploration = useCallback(async () => {
     setRunning(true);
     setStatus("running");

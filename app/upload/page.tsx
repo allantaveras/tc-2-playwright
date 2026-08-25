@@ -10,7 +10,7 @@ export default function UploadPage() {
   const router = useRouter();
   const [tcs, setTcs] = useState<TestCase[]>([]);
   const [errors, setErrors] = useState<string[]>([]);
-  const [targetUrl, setTargetUrl] = useState("http://qa.evosphere.nt.core/");
+  const [targetUrl, setTargetUrl] = useState("https://www.saucedemo.com/");
   const [credentialsJson, setCredentialsJson] = useState("");
   const [credsErrors, setCredsErrors] = useState<string[]>([]);
   const [step, setStep] = useState<"upload" | "review" | "done">("upload");
@@ -137,7 +137,7 @@ export default function UploadPage() {
                 onChange={(e) => setTargetUrl(e.target.value)}
                 onBlur={handleSaveUrl}
                 className="flex-1"
-                placeholder="http://qa.evosphere.nt.core/"
+                placeholder="https://www.saucedemo.com/"
               />
             </div>
           </div>
