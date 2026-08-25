@@ -82,6 +82,47 @@ Navigate to the **Upload** section to provide your manual test cases in JSON for
 ### 3. Generate Playwright Project
 Head to **Generate Project** to have the AI process your manual instructions. Once finished, you can download a complete `.zip` archive containing the Next.js app and the newly generated Playwright scripts.
 
+## 💡 Example Output
+
+Here is a quick look at how **TC-to-Playwright** transforms your manual test cases into automated scripts.
+
+### Before: Manual Test Case (JSON)
+
+```json
+[
+  {
+    "id": "L-001",
+    "scenario": "Positive login - Admin",
+    "test_case": "Verify that an admin user can successfully log into the system.",
+    "preconditions": "Admin",
+    "steps": "1. Go to Login\n2. Enter \"NT-5175\" in Username\n3. Enter \"1\" in Password\n4. Click on Sign In",
+    "expected": "User is redirected to the Dashboard and Login page is no longer visible.",
+    "sheet": "Login Module"
+  }
+]
+```
+
+### After: Generated Playwright Script (TypeScript)
+
+```typescript
+import { test, expect } from '@playwright/test';
+import { ensureAuthenticated, AUTH_ROLES } from '../utils/authHelper';
+import { LoginPage } from '../pages/LoginPage';
+
+test.describe('Login Module', () => {
+  test.beforeEach(async ({ page }) => {
+    const loginPage = new LoginPage(page);
+    await loginPage.goto();
+  });
+
+  test('L-001: Positive login - Admin', async ({ page }) => {
+    const loginPage = new LoginPage(page);
+    await loginPage.login('NT-5175', '1');
+    await expect(page).not.toHaveURL(/.*login/);
+  });
+});
+```
+
 ## 📸 Screenshots
 
 ### Dashboard
