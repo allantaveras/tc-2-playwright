@@ -16,8 +16,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
   return (
-    <div>
-      <nav className="sidebar">
+    <div className="flex min-h-screen">
+      <nav className="sidebar flex flex-col relative">
         <div className="p-5 border-b border-white/10">
           <h1 className="text-lg font-bold text-white">TC-to-Playwright</h1>
           <p className="text-xs text-gray-400 mt-1">Test Case Automation Tool</p>
@@ -39,7 +39,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           })}
         </div>
 
-        <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-white/10">
+        <div className="mt-auto p-4 border-t border-white/10">
           <div className="text-xs text-gray-500">
             <p>v1.0.0</p>
             <p>Powered by Stagehand + Playwright</p>
