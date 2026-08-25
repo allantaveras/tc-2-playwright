@@ -44,7 +44,7 @@ Follow these steps to set up the project locally.
 
 1. Clone the repository
    ```bash
-   git clone https://github.com/allantaveras/homework.git
+   git clone https://github.com/allantaveras/tc-2-playwright
    cd homework
    ```
 
@@ -55,8 +55,8 @@ Follow these steps to set up the project locally.
 
 3. Setup environment variables. Rename `.env.example` to `.env.local` or create it:
    ```env
-   # Target application URL
-   NEXT_PUBLIC_DEFAULT_URL=http://qa.evosphere.nt.core/
+   # Target application URL (example)
+   NEXT_PUBLIC_DEFAULT_URL=http://saucedemo.com/
    
    # Stagehand AI Configuration
    BROWSERBASE_API_KEY=your_api_key
